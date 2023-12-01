@@ -5,7 +5,7 @@ import time
 def writeMakefile(dir):
     fp = open(dir+'/makefile', 'w')
     fp.write("CXX=clang++\n")
-    fp.write("CXXFLAGS=-std=c++11 -Wall -Wextra\n")
+    fp.write("CXXFLAGS=-std=c++20 -Wall -Wextra\n")
     fp.write("LDFLAGS=$(shell pkg-config )\n\n")
     fp.write("SRCS=main.cpp\n")
     fp.write("TARGET=main\n\n")
@@ -34,7 +34,7 @@ def writeMainCpp(dir):
 if __name__ == "__main__":
     day = time.strftime("%d", time.localtime())
     print(day)
-    dir = f"/Users/simonblaue/ownCloud/AoC/2023/Day_{day}"
+    dir = f"/Users/simonblaue/ownCloud/AoC/2023/day_{day}"
     try:
         os.mkdir(dir)
     except:

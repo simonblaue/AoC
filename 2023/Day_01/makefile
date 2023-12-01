@@ -1,5 +1,5 @@
 CXX=clang++
-CXXFLAGS=-std=c++11 -Wall -Wextra
+CXXFLAGS=-std=c++20 -Wall -Wextra
 LDFLAGS=$(shell pkg-config )
 
 SRCS=main.cpp
