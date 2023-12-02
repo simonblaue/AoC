@@ -30,6 +30,40 @@ def writeMainCpp(dir):
     fp.write("int main(void)\n{\n\n\n")
     fp.write("\treturn 0;\n}")
     fp.close()
+        # /*
+        # Day 02 of AoC
+        # By Simon Blaue
+        # */
+
+        # #include <iostream>
+        # #include "../include/io.hpp"
+
+        # using std::vector, std::string;
+
+
+        # int partOne(vector<string> data){
+
+        #     return -1;
+        # }
+
+        # int partTwo(vector<string> data){
+
+        #     return -1;
+        # }
+
+
+        # int main(void)
+        # {
+
+        #     vector<string> data = readInput("input.txt");
+
+        #     int res1 = partOne(data);
+        #     int res2 = partTwo(data);
+
+        #     std::cout << "The solution two part one is: " << 
+
+        #     return 0;
+        # }
 
 
 if __name__ == "__main__":
