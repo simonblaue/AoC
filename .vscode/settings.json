@@ -76,6 +76,12 @@
         "utility": "cpp",
         "format": "cpp",
         "stop_token": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "__tree": "cpp",
+        "iostream": "cpp",
+        "map": "cpp",
+        "deque": "cpp",
+        "regex": "cpp",
+        "ranges": "cpp"
     }
 }

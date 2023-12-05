@@ -27,43 +27,18 @@ def writeMainCpp(dir):
     fp.write('#include "../include/io.hpp"\n')
     fp.write('\n')
     fp.write('using std::vector, std::string;\n\n')
+    fp.write('int partOne(vector<string> data){\n')
+    fp.write('\n\treturn -1;\n}\n')
+    fp.write('int partTwo(vector<string> data){\n')
+    fp.write('\n\treturn -1;\n}\n')
     fp.write("int main(void)\n{\n\n\n")
+    fp.write('vector<string> data = readInput("input.txt");\n\n')
+    fp.write('int res1 = partOne(data);\n')
+    fp.write('int res2 = partTwo(data);\n')
+    fp.write('\n std::cout << "The solution to part one is: " <<  res1 << std::endl;\n')
+    fp.write('\n std::cout << "The solution to part two is: " <<  res2 << std::endl;\n')
     fp.write("\treturn 0;\n}")
     fp.close()
-        # /*
-        # Day 02 of AoC
-        # By Simon Blaue
-        # */
-
-        # #include <iostream>
-        # #include "../include/io.hpp"
-
-        # using std::vector, std::string;
-
-
-        # int partOne(vector<string> data){
-
-        #     return -1;
-        # }
-
-        # int partTwo(vector<string> data){
-
-        #     return -1;
-        # }
-
-
-        # int main(void)
-        # {
-
-        #     vector<string> data = readInput("input.txt");
-
-        #     int res1 = partOne(data);
-        #     int res2 = partTwo(data);
-
-        #     std::cout << "The solution two part one is: " << 
-
-        #     return 0;
-        # }
 
 
 if __name__ == "__main__":
