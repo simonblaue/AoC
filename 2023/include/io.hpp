@@ -1,6 +1,36 @@
 #pragma once
 
 #include <fstream>
+#include <vector>
+#include <sstream>
+
+std::vector<int> stringLine2Int(std::string s){
+
+    std::stringstream ss;
+    std::vector<int> nums;
+    std::string temp = "";
+
+    ss << s;
+    while(!ss.eof()){
+        int num;
+        ss >> temp;
+        if (std::stringstream(temp) >> num){
+            nums.push_back(num);
+        }
+        temp = "";
+    }
+    return nums;
+}
+
+template<typename T, typename P>
+T remove_if(T beg, T end, P pred)
+{
+    T dest = beg;
+    for (T itr = beg;itr != end; ++itr)
+        if (!pred(*itr))
+            *(dest++) = *itr;
+    return dest;
+}
 
 std::vector<std::string> readInput(std::string filename)
 {

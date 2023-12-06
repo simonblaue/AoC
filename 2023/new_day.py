@@ -5,8 +5,8 @@ import time
 def writeMakefile(dir):
     fp = open(dir+'/makefile', 'w')
     fp.write("CXX=clang++\n")
-    fp.write("CXXFLAGS=-std=c++20 -Wall -Wextra\n")
-    fp.write("LDFLAGS=$(shell pkg-config )\n\n")
+    fp.write("CXXFLAGS=-std=c++23 -Wall -Wextra\n")
+    # fp.write("LDFLAGS=$(shell pkg-config )\n\n")
     fp.write("SRCS=main.cpp\n")
     fp.write("TARGET=main\n\n")
     fp.write("all: $(TARGET)\n\n")
@@ -24,6 +24,7 @@ def writeMainCpp(dir):
     fp.write(f"/*\nDay {day} of AoC\n")
     fp.write(f"By Simon Blaue\n*/\n\n")
     fp.write("#include <iostream>\n")
+    fp.write("#include <vector>\n")
     fp.write('#include "../include/io.hpp"\n')
     fp.write('\n')
     fp.write('using std::vector, std::string;\n\n')
@@ -52,6 +53,10 @@ if __name__ == "__main__":
 
     # create a empty input text file
     fp = open(dir+'/input.txt', 'w')
+    fp.close()
+
+     # create a empty input text file
+    fp = open(dir+'/testinput.txt', 'w')
     fp.close()
 
     writeMainCpp(dir)
