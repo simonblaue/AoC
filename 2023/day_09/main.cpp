@@ -26,6 +26,16 @@ void printSeq(vector<int> seq){
 	}
 }
 
+
+bool allZero(vector<int> seq){
+	for (auto i: seq){
+		if (i != 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
 int recursiveFinder(vector<int> seq){
 	std::cout << "Find Recursiv for ";
 	printSeq(seq);
@@ -35,7 +45,7 @@ int recursiveFinder(vector<int> seq){
 		newVec.push_back(seq[i+1]-seq[i]);
 	}
 
-	if (reduce(newVec.begin(), newVec.end()) == 0){
+	if (allZero(newVec)){
 		std::cout << "All zeros\n";
 		return seq[seq.size()-1];
 	}
@@ -46,14 +56,13 @@ int recursiveFinder(vector<int> seq){
 int iterativeFinder(vector<int> seq){
 	int sum = 0;
 
-	while (reduce(seq.begin(), seq.end()) != 0){
+	while (allZero(seq)){
 		sum += seq[seq.size()-1];
 		std::cout << "Act Seq: ";
 		printSeq(seq);
 		std::cout << "\n";
 		std::adjacent_difference(seq.begin(), seq.end(), seq.begin());
 		seq.erase(seq.begin());
-
 	}
 	return sum;
 }
@@ -71,7 +80,7 @@ int partOne(vector<string> data){
 	vector<int> futurVals;
 	for (vector<int> seq : recordings){
 
-		int futurVal = iterativeFinder(seq);
+		int futurVal = recursiveFinder(seq);
 		std::cout << " Next: " << futurVal << "\n";
 		futurVals.push_back(futurVal);
 	}
