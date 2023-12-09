@@ -22,6 +22,24 @@ std::vector<int> stringLine2Int(std::string s){
     return nums;
 }
 
+std::vector<long> stringLine2Long(std::string s){
+
+    std::stringstream ss;
+    std::vector<long> nums;
+    std::string temp = "";
+
+    ss << s;
+    while(!ss.eof()){
+        long num;
+        ss >> temp;
+        if (std::stringstream(temp) >> num){
+            nums.push_back(num);
+        }
+        temp = "";
+    }
+    return nums;
+}
+
 template<typename T, typename P>
 T remove_if(T beg, T end, P pred)
 {
