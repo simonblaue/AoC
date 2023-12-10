@@ -178,6 +178,8 @@ int partOne(vector<string> data){
 		cout << "\n";
 	}
 
+	// Part two with new Maze
+
 	return maxElem;
 }
 
