@@ -10,16 +10,28 @@ By Simon Blaue
 
 using std::vector, std::string, std::reduce;
 
-void printPattern(vector<string> p){
-	for (string l:p){
+void printPattern(vector<string> p, vector<int> verticalM={0}, vector<int> horizontalM={0}){
+	for (int i=0; i<p.size(); i++){
+		string l = p[i];
+		if (horizontalM[0] != 0){
+			if (std::find(horizontalM.begin(), horizontalM.end(), i) != horizontalM.end()){
+				string maxis(l.size(), '-');
+				std::cout << maxis << "\n";
+			}
+		}
+		if (verticalM[0] != 0){
+			for (int j : verticalM){
+				l.insert(verticalM[j], "|");
+			}
+		}
 		std::cout << l << "\n";
 	}
-	std::cout << "\n";
 }
 
-int getMirrorAxisVertical(vector<string> p){
-	// Mirrored in row dir
-	size_t maxMirrorAxis = p[0].size()-1;
+vector<int> getMirrorAxisVertical(vector<string> p){
+
+	vector<int> allAxis;
+	size_t maxMirrorAxis = p[0].size();
 	for (int k=1; k<maxMirrorAxis; k++){
 		int j=1;
 		bool looping = true;
@@ -33,32 +45,24 @@ int getMirrorAxisVertical(vector<string> p){
 			j++;
 		}
 		if (looping){
-			return k;
+			allAxis.push_back(k);
 		}
 	}
-	return 0;
+	return allAxis;
 }
 
-int getMirrorAxisHorizontal(vector<string> p){
-	// Mirrored in row dir
-	size_t maxMirrorAxis = p.size()-1;
-	for (int k=1; k<maxMirrorAxis; k++){
-		int j=1;
-		bool looping = true;
-		while( k-j>=0 && k+j-1<p.size() && looping){
-			for (int i=0; i<p.size(); i++){
-				if (p[k-j][i] != p[k+j-1][i]){
-					looping = false;
-					break;
-				}
-			}
-			j++;
-		}
-		if (looping){
-			return k;
+vector<int> getMirrorAxisHorizontal(vector<string> p){
+	// Transpose and find
+	size_t rows = p.size();
+	size_t cols = p[0].size();
+	vector<string> pT(cols, string(rows,' '));
+	for (size_t i=0; i<p.size(); i++){
+		for (size_t j=0; j<p[0].size(); j++){
+			pT[j][i] = p[i][j];
 		}
 	}
-	return 0;
+
+	return getMirrorAxisVertical(pT);
 }
 
 int partOne(vector<string> data){
@@ -81,11 +85,15 @@ int partOne(vector<string> data){
 
 	
 	for (auto p: patterns){
+		vector<int> res1 = getMirrorAxisVertical(p);
+		vector<int> res2 = getMirrorAxisHorizontal(p);
 
-		res1_vertical.push_back(getMirrorAxisVertical(p));
-		if (*res1_vertical.end() == 0){
-			res2_horizontal.push_back(getMirrorAxisHorizontal(p));
-		}
+		res1_vertical.push_back(reduce(res1.begin(), res1.end()));
+		res2_horizontal.push_back(reduce(res2.begin(), res2.end()));
+
+		// printPattern(p, res1,res2);
+		// std::cout << "\n\n";
+		// std::cout << res1 << " " << res2 << "\n\n";
 	}
 
 	int r_vertical = reduce(res1_vertical.begin(),res1_vertical.end());
@@ -98,7 +106,7 @@ int main(void)
 {
 
 
-vector<string> data = readInput("testinput.txt");
+vector<string> data = readInput("input.txt");
 
 int res1 = partOne(data);
 
