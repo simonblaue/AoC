@@ -1,6 +1,6 @@
 import regex as re
 
-f = open("testinput.txt")
+f = open("input.txt")
 lines = f.read().strip().splitlines()
 
 #part 1 and 2

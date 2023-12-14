@@ -59,6 +59,20 @@ if __name__ == "__main__":
     fp = open(dir+'/testinput.txt', 'w')
     fp.close()
 
+    fp = open(dir + '/main.jl', 'w')
+    fp.write("# AoC 2023\n")
+    fp.write("# by Simon Blaue\n\n")
+    fp.write("function main()\n")
+    fp.write(f'\t filename = "{dir}/testinput.txt"\n')
+    fp.write("\t res=-1\n")
+    fp.write("\t data=readlines(filename)\n\n\n")
+    fp.write('\t println("The result is: ", res)\n')
+    fp.write("end\n\n")
+    fp.write("main()")
+    fp.close()
+
+
+
     writeMainCpp(dir)
     writeMakefile(dir)
 
