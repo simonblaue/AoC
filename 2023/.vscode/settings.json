@@ -106,5 +106,6 @@
         "stdfloat": "cpp",
         "syncstream": "cpp",
         "typeindex": "cpp"
-    }
+    },
+    "julia.environmentPath": "/Users/simonblaue/ownCloud/AoC/2023"
 }
