@@ -33,12 +33,16 @@ function fillConture!(p, field, inner)
 end
 
 function try_one(data)
-	contour = zeros(Int, 400,800)
+	re = r"[U,D,L,R] (\d+) \(#\w{6}\)"
+	# contour = zeros(Int, 400,800)
+	contour = zeros(Int, 10,7)
 	i = 1
-	pos = [300,300]
+	# pos = [300,300]
+	pos = [1,1]
 	for l in data
 		dir = l[1]
-		amount = parse(Int,l[3])
+		m = match(re, l)
+		amount = parse(Int, m.captures[1])
 		if dir == 'R'
 			contour[pos[1], pos[2]:pos[2]+amount] .= i
 			pos += [0, amount]
@@ -58,23 +62,24 @@ function try_one(data)
 
 	display(contour)
 	display(plot(heatmap(contour, color=:grays, aspect_ratio=1)))
-	fillConture!([200,200], contour, inner)
+	# fillConture!([200,200], contour, inner)
+	fillConture!([2,2], contour, inner)
 	display(plot(heatmap(contour+inner, color=:grays, aspect_ratio=1)))
 	println("The result is: ", sum(contour + inner))
+
 end
 
-function main()
 
-	filename = "/Users/simonblaue/ownCloud/AoC/2023/day_18/input.txt"
-	data=readlines(filename)
-	
+function try_two(data)
+	re = r"[U,D,L,R] (\d+) \(#\w{6}\)"
 	pxs = [1]
 	pys = [1]
 	pos = [1,1]
 	contourlen = 0
 	for l in data 
+		m = match(re,l)
+		amount = parse(Int,m.captures[1])
 		dir = l[1]
-		amount = parse(Int,l[3])
 		if dir == 'R'
 			pos += [0, amount]
 		elseif dir == 'L'
@@ -101,10 +106,19 @@ function main()
 	println(contourlen)
 	println(area)
 	println(area+1+contourlen/2)
-
-
-
 	display(p1)
+end
+	
+
+function main()
+
+	filename = "/Users/simonblaue/ownCloud/AoC/2023/day_18/testinput.txt"
+	data=readlines(filename)
+	
+	try_one(data)
+
+
+
 end
 
 
